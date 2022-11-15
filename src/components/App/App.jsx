@@ -8,6 +8,7 @@ export class App extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    visible: false,
   };
 
   handlerClick = e => {
@@ -18,6 +19,7 @@ export class App extends React.Component {
       this.setState(prevState => {
         return {
           [nameBtn]: prevState[nameBtn] + 1,
+          visible: true,
         };
       });
     }
@@ -46,6 +48,7 @@ export class App extends React.Component {
           onLeaveFeedback={this.handlerClick}
         ></FeedbackOptions>
         <Statistics
+          visible={this.state.visible}
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}

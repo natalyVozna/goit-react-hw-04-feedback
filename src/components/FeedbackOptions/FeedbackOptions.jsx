@@ -1,6 +1,6 @@
 import { Button } from 'components/Button/Button';
-import { ButtonsBox } from './FeedbackOptions.styled';
 import PropTypes from 'prop-types';
+import { ButtonsBox } from './FeedbackOptions.styled';
 import { CgSmile, CgSmileNeutral, CgSmileSad } from 'react-icons/cg';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
@@ -8,15 +8,18 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   console.log(options);
   return (
     <ButtonsBox>
-      {options.map((option, index) => (
-        <Button
-          key={option}
-          icon={iconArr[index]}
-          onClickHandle={onLeaveFeedback}
-        >
-          {option}
-        </Button>
-      ))}
+      {options.map(
+        (option, index) =>
+          index < 3 && (
+            <Button
+              key={option}
+              icon={iconArr[index]}
+              onClickHandle={onLeaveFeedback}
+            >
+              {option}
+            </Button>
+          )
+      )}
     </ButtonsBox>
   );
 };
