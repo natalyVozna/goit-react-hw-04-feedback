@@ -14,7 +14,7 @@ export class App extends React.Component {
   handlerClick = e => {
     const { textContent } = e.target;
     const nameBtn = textContent.toLowerCase();
-    console.log('nameBtn', nameBtn, e.target);
+
     if (nameBtn) {
       this.setState(prevState => {
         return {
