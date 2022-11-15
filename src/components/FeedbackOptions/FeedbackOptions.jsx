@@ -5,7 +5,7 @@ import { CgSmile, CgSmileNeutral, CgSmileSad } from 'react-icons/cg';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   const iconArr = [CgSmile, CgSmileNeutral, CgSmileSad];
-  console.log(options);
+
   return (
     <ButtonsBox>
       {options.map(
