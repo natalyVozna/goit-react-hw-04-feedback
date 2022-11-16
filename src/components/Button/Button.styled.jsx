@@ -24,6 +24,8 @@ export const StyledButton = styled.button`
     height: 22px;
     margin-right: 5px;
     position: relative;
+
     z-index: -1;
+    color: var(--accent);
   }
 `;

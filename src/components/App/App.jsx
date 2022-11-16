@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Statistics } from '../Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Section } from 'components/Section/Section';
 
-export class App extends React.Component {
+export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
@@ -26,18 +26,18 @@ export class App extends React.Component {
   };
 
   countTotalFeedback = () => {
-    const values = Object.values(this.state);
-    const total = values.reduce((acc, num) => acc + num, 0);
-
-    return total;
+    return Object.values(this.state).reduce(
+      (acc, num) => (typeof num === 'number' && !isNaN(num) ? acc + num : acc),
+      0
+    );
   };
 
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
     let rate = 0;
-    const total = this.countTotalFeedback();
-    if (total && good) {
-      rate = (good / total) * 100;
+
+    if (this.countTotalFeedback() && good) {
+      rate = (good / this.countTotalFeedback()) * 100;
     }
 
     return Math.round(rate);
