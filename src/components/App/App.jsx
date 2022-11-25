@@ -31,6 +31,7 @@ export class App extends Component {
       0
     );
   };
+  // ckdc
 
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
