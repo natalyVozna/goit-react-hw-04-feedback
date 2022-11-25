@@ -1,68 +1,69 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { Statistics } from '../Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Section } from 'components/Section/Section';
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-    visible: false,
-  };
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [visible, setVisible] = useState(false);
 
-  handlerClick = e => {
+  const handlerClick = e => {
     const { textContent } = e.target;
     const nameBtn = textContent.toLowerCase();
 
     if (nameBtn) {
-      this.setState(prevState => {
-        return {
-          [nameBtn]: prevState[nameBtn] + 1,
-          visible: true,
-        };
-      });
+      setVisible(true);
+      switch (nameBtn) {
+        case 'good':
+          setGood(prev => prev + 1);
+          break;
+        case 'neutral':
+          setNeutral(prev => prev + 1);
+          break;
+        case 'bad':
+          setBad(prev => prev + 1);
+          break;
+        default:
+          throw new Error();
+      }
     }
   };
 
-  countTotalFeedback = () => {
-    return Object.values(this.state).reduce(
+  const countTotalFeedback = () => {
+    return [good, neutral, bad].reduce(
       (acc, num) => (typeof num === 'number' && !isNaN(num) ? acc + num : acc),
       0
     );
   };
-  // ckdc
 
-  countPositiveFeedbackPercentage = () => {
-    const { good } = this.state;
+  const countPositiveFeedbackPercentage = () => {
     let rate = 0;
 
-    if (this.countTotalFeedback() && good) {
-      rate = (good / this.countTotalFeedback()) * 100;
+    if (countTotalFeedback() && good) {
+      rate = (good / countTotalFeedback()) * 100;
     }
 
     return Math.round(rate);
   };
 
-  render() {
-    const { good, neutral, bad, visible } = this.state;
+  return (
+    <Section title="Please leave feedback">
+      <FeedbackOptions
+        // options={Object.keys(this.state)}
+        options={['good', 'neutral', 'bad']}
+        onLeaveFeedback={handlerClick}
+      ></FeedbackOptions>
 
-    return (
-      <Section title="Please leave feedback">
-        <FeedbackOptions
-          options={Object.keys(this.state)}
-          onLeaveFeedback={this.handlerClick}
-        ></FeedbackOptions>
-
-        <Statistics
-          visible={visible}
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
-      </Section>
-    );
-  }
-}
+      <Statistics
+        visible={visible}
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={countTotalFeedback()}
+        positivePercentage={countPositiveFeedbackPercentage()}
+      />
+    </Section>
+  );
+};
