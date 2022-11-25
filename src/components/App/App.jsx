@@ -11,44 +11,45 @@ export class App extends Component {
     visible: false,
   };
 
-  handlerClick = e => {
-    const { textContent } = e.target;
-    const nameBtn = textContent.toLowerCase();
+  // handlerClick = e => {
+  //   const { textContent } = e.target;
+  //   const nameBtn = textContent.toLowerCase();
 
-    if (nameBtn) {
-      this.setState(prevState => {
-        return {
-          [nameBtn]: prevState[nameBtn] + 1,
-          visible: true,
-        };
-      });
-    }
-  };
+  //   if (nameBtn) {
+  //     this.setState(prevState => {
+  //       return {
+  //         [nameBtn]: prevState[nameBtn] + 1,
+  //         visible: true,
+  //       };
+  //     });
+  //   }
+  // };
 
-  countTotalFeedback = () => {
-    return Object.values(this.state).reduce(
-      (acc, num) => (typeof num === 'number' && !isNaN(num) ? acc + num : acc),
-      0
-    );
-  };
+  // countTotalFeedback = () => {
+  //   return Object.values(this.state).reduce(
+  //     (acc, num) => (typeof num === 'number' && !isNaN(num) ? acc + num : acc),
+  //     0
+  //   );
+  // };
 
-  countPositiveFeedbackPercentage = () => {
-    const { good } = this.state;
-    let rate = 0;
+  // countPositiveFeedbackPercentage = () => {
+  //   const { good } = this.state;
+  //   let rate = 0;
 
-    if (this.countTotalFeedback() && good) {
-      rate = (good / this.countTotalFeedback()) * 100;
-    }
+  //   if (this.countTotalFeedback() && good) {
+  //     rate = (good / this.countTotalFeedback()) * 100;
+  //   }
 
-    return Math.round(rate);
-  };
+  //   return Math.round(rate);
+  // };
 
   render() {
     const { good, neutral, bad, visible } = this.state;
 
     return (
       <Section title="Please leave feedback">
-        <FeedbackOptions
+        <span>{(good, neutral, bad, visible)}</span>
+        {/* <FeedbackOptions
           options={Object.keys(this.state)}
           onLeaveFeedback={this.handlerClick}
         ></FeedbackOptions>
@@ -60,7 +61,7 @@ export class App extends Component {
           bad={bad}
           total={this.countTotalFeedback()}
           positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        /> */}
       </Section>
     );
   }

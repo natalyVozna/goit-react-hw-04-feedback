@@ -1,10 +1,10 @@
 import { Button } from 'components/Button/Button';
 import PropTypes from 'prop-types';
 import { ButtonsBox } from './FeedbackOptions.styled';
-// import { CgSmile, CgSmileNeutral, CgSmileSad } from 'react-icons/cg';
+import { CgSmile, CgSmileNeutral, CgSmileSad } from 'react-icons/cg';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  // const iconArr = [CgSmile, CgSmileNeutral, CgSmileSad];
+  const iconArr = [CgSmile, CgSmileNeutral, CgSmileSad];
 
   return (
     <ButtonsBox>
@@ -13,7 +13,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           index < 3 && (
             <Button
               key={option}
-              // icon={iconArr[index]}
+              icon={iconArr[index]}
               name={option}
               onClickHandle={onLeaveFeedback}
             >
