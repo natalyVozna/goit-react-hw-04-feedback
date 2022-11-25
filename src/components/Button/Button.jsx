@@ -7,9 +7,15 @@ export const Button = ({
   icon: Icon = null,
   children,
   onClickHandle,
+  name,
 }) => {
   return (
-    <StyledButton type={type} disabled={disabled} onClick={onClickHandle}>
+    <StyledButton
+      name={name}
+      type={type}
+      disabled={disabled}
+      onClick={onClickHandle}
+    >
       {Icon && <Icon size="20" />}
       {children}
     </StyledButton>
@@ -18,6 +24,7 @@ export const Button = ({
 
 Button.propTypes = {
   type: PropTypes.string,
+  name: PropTypes.string,
   disabled: PropTypes.bool,
   onClickHandle: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,

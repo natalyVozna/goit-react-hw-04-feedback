@@ -14,6 +14,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
             <Button
               key={option}
               icon={iconArr[index]}
+              name={option}
               onClickHandle={onLeaveFeedback}
             >
               {option}

@@ -10,12 +10,11 @@ export const App = () => {
   const [visible, setVisible] = useState(false);
 
   const handlerClick = e => {
-    const { textContent } = e.target;
-    const nameBtn = textContent.toLowerCase();
+    const { name } = e.target;
 
-    if (nameBtn) {
+    if (name) {
       setVisible(true);
-      switch (nameBtn) {
+      switch (name) {
         case 'good':
           setGood(prev => prev + 1);
           break;
